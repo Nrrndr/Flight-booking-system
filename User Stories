@@ -1,0 +1,163 @@
+🗂️ Epic 1: Flight Booking System
+# [EPIC-1] Nama Epic: Flight Booking System
+
+## Deskripsi
+Epic ini mencakup semua fitur yang memungkinkan penumpang untuk mencari, memesan, dan mengelola tiket penerbangan mereka.
+
+## Daftar User Story terkait
+- [ ] [US-1] Mencari penerbangan
+- [ ] [US-2] Memesan tiket penerbangan
+- [ ] [US-3] Mengunduh e-ticket
+- [ ] [US-4] Melihat riwayat pemesanan
+
+## Tujuan Epic
+Menyediakan pengalaman pemesanan tiket yang cepat, nyaman, dan dapat diandalkan untuk pengguna.
+
+## Catatan
+- Integrasi dengan sistem pembayaran
+- Integrasi dengan API penerbangan real-time
+
+Sebagai penumpang, saya ingin mencari penerbangan, agar saya dapat menemukan jadwal yang sesuai
+
+# [US-1] Sebagai penumpang, saya ingin mencari penerbangan, agar saya dapat menemukan jadwal yang sesuai
+
+## Deskripsi
+Sebagai penumpang, saya perlu fitur pencarian penerbangan berdasarkan kota asal, kota tujuan, tanggal, dan jumlah penumpang.
+
+## Acceptance Criteria
+- [ ] Dapat mengakses form pencarian dari halaman utama
+- [ ] Form memiliki field: kota asal, kota tujuan, tanggal keberangkatan, jumlah penumpang
+- [ ] Menampilkan daftar penerbangan sesuai kriteria pencarian
+- [ ] Menampilkan harga dan jam keberangkatan/ketibaan
+- [ ] Ada tombol untuk lanjut ke pemesanan tiket
+
+## Catatan
+- Integrasi dengan API daftar penerbangan
+
+Sebagai penumpang, saya ingin memesan tiket, agar saya dapat memastikan tempat duduk saya di penerbangan
+# [US-2] Sebagai penumpang, saya ingin memesan tiket, agar saya dapat memastikan tempat duduk saya di penerbangan
+
+## Deskripsi
+Sebagai penumpang, setelah memilih penerbangan, saya ingin mengisi data diri dan membayar agar tiket saya dapat dikonfirmasi.
+
+## Acceptance Criteria
+- [ ] Formulir data penumpang (nama, email, nomor telepon)
+- [ ] Metode pembayaran tersedia (transfer, kartu kredit, dll.)
+- [ ] Konfirmasi pemesanan muncul setelah pembayaran berhasil
+- [ ] Kursi yang dipesan ditandai sebagai tidak tersedia
+- [ ] Notifikasi email dikirimkan dengan ringkasan pemesanan
+
+## Catatan
+- Validasi pembayaran harus aman
+- Penyesuaian jumlah kursi setelah pembayaran
+
+Sebagai penumpang, saya ingin mengunduh e-ticket, agar saya memiliki bukti perjalanan
+
+# [US-3] Sebagai penumpang, saya ingin mengunduh e-ticket, agar saya memiliki bukti perjalanan
+
+## Deskripsi
+Setelah berhasil memesan tiket, saya ingin mendapatkan e-ticket dalam format PDF untuk dicetak atau dibawa secara digital.
+
+## Acceptance Criteria
+- [ ] Tersedia tombol "Unduh E-Ticket" di halaman riwayat pemesanan
+- [ ] E-Ticket berisi nama, nomor penerbangan, tanggal, jam, dan kode booking
+- [ ] Format file adalah PDF
+- [ ] Sistem mengirimkan e-ticket via email otomatis setelah pemesanan berhasil
+
+## Catatan
+- Gunakan template PDF standar untuk E-Ticket
+
+Sebagai penumpang, saya ingin melihat riwayat pemesanan, agar saya dapat mengelola perjalanan saya
+
+# [US-4] Sebagai penumpang, saya ingin melihat riwayat pemesanan, agar saya dapat mengelola perjalanan saya
+
+## Deskripsi
+Sebagai pengguna, saya ingin melihat semua tiket yang sudah pernah saya pesan, termasuk detail status penerbangan dan tiket.
+
+## Acceptance Criteria
+- [ ] Daftar semua penerbangan yang pernah dipesan
+- [ ] Setiap entri menampilkan: nama penerbangan, tanggal, status pembayaran, status penerbangan
+- [ ] Tersedia tombol "Unduh E-Ticket" bila tersedia
+
+## Catatan
+- Dukungan filter berdasarkan tanggal dan status
+
+🛠️ Epic 2: Flight Management System
+
+# [EPIC-2] Nama Epic: Flight Management System
+
+## Deskripsi
+Epic ini mencakup semua fitur yang digunakan oleh admin untuk mengelola data penerbangan di sistem.
+
+## Daftar User Story terkait
+- [ ] [US-5] Menambahkan penerbangan baru
+- [ ] [US-6] Memperbarui jumlah kursi tersedia
+
+## Tujuan Epic
+Memungkinkan admin untuk memastikan data penerbangan selalu akurat dan terkini.
+
+## Catatan
+- Validasi untuk menghindari konflik jadwal dan data duplikat
+
+Sebagai admin, saya ingin menambahkan penerbangan baru, agar tersedia di sistem untuk dipesan
+
+# [US-5] Sebagai admin, saya ingin menambahkan penerbangan baru, agar tersedia di sistem untuk dipesan
+
+## Deskripsi
+Admin perlu memiliki kemampuan untuk memasukkan data penerbangan baru ke dalam sistem.
+
+## Acceptance Criteria
+- [ ] Formulir tambah penerbangan: nama maskapai, asal, tujuan, tanggal, jam, harga, jumlah kursi
+- [ ] Validasi input wajib diisi
+- [ ] Sistem menolak penerbangan dengan jadwal yang berbenturan
+- [ ] Penerbangan langsung tampil di daftar semua penerbangan setelah dibuat
+
+## Catatan
+- Pertimbangkan integrasi dengan API maskapai untuk sinkronisasi data
+
+Sebagai admin, saya ingin memperbarui jumlah kursi tersedia, agar data kursi tetap akurat
+
+# [US-6] Sebagai admin, saya ingin memperbarui jumlah kursi tersedia, agar data kursi tetap akurat
+
+## Deskripsi
+Sebagai admin, saya ingin memperbarui jumlah kursi yang tersedia untuk penerbangan yang sudah ada.
+
+## Acceptance Criteria
+- [ ] Dapat mengedit jumlah kursi penerbangan
+- [ ] Tidak boleh mengurangi jumlah kursi di bawah jumlah tiket yang sudah terjual
+- [ ] Perubahan jumlah kursi dicatat dalam history perubahan
+
+## Catatan
+- Tampilkan notifikasi saat jumlah kursi berhasil diperbarui
+
+📈 Epic 3: Business & Revenue Reports
+
+# [EPIC-3] Nama Epic: Business & Revenue Reports
+
+## Deskripsi
+Epic ini mencakup pembuatan laporan keuangan dan performa bisnis berbasis data pemesanan penerbangan.
+
+## Daftar User Story terkait
+- [ ] [US-7] Melihat laporan pendapatan
+
+## Tujuan Epic
+Menyediakan data keuangan yang akurat untuk analisa dan pengambilan keputusan bisnis.
+
+## Catatan
+- Pastikan data laporan bisa diekspor ke format CSV atau PDF
+
+Sebagai manajer, saya ingin melihat laporan pendapatan, agar saya dapat mengevaluasi performa bisnis
+# [US-7] Sebagai manajer, saya ingin melihat laporan pendapatan, agar saya dapat mengevaluasi performa bisnis
+
+## Deskripsi
+Sebagai manajer, saya perlu melihat berapa banyak pendapatan yang dihasilkan dari penjualan tiket dalam periode tertentu.
+
+## Acceptance Criteria
+- [ ] Dapat memilih rentang waktu laporan
+- [ ] Menampilkan total tiket terjual, total pendapatan, rata-rata harga tiket
+- [ ] Tersedia grafik tren penjualan per hari/minggu
+- [ ] Data dapat diunduh dalam format CSV atau PDF
+
+## Catatan
+- Perlu proteksi akses agar hanya manajer yang dapat melihat laporan ini
+
