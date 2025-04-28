@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/book-style.css" />
+    <title>Book Flights</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div>
+        <h1>Flight Booking</h1>
+      </div>
+      <ul class="linkCont">
+        <ol>
+          <a href="user">Cari Penerbangan</a>
+        </ol>
+        <ol>
+          <a href="ticket">Cetak E-Tiket</a>
+        </ol>
+        <ol>
+          <a href="history">Riwayat</a>
+        </ol>
+      </ul>
+    </div>
+    <div class="bookFlight">
+      <h1>Pesan Tiket</h1>
+      <div class="bookWrapper">
+        <!-- <% if (typeof flightBook !== 'undefined' && flightBook) { %> -->
+        <div class="flight-details">
+          <h2>Detail Tiket Penerbangan</h2>
+          <p><strong>Flight Number</strong>: <%= flightBook.FlightNumber %></p>
+          <p><strong>Origin</strong>: <%= flightBook.OriginAirportCode %></p>
+          <p>
+            <strong>Destination</strong>: <%= flightBook.DestinationAirportCode
+            %>
+          </p>
+          <p>
+            <strong>Departure Date Time</strong>: <%= new
+            Date(flightBook.DepartureDateTime).toLocaleString("en-GB", { year:
+            "numeric", month: "2-digit", day: "2-digit", hour: "2-digit",
+            minute: "2-digit", second: "2-digit", hour12: false }).replace(',',
+            '') %>
+          </p>
+          <p>
+            <strong>Arrival Date Time</strong>: <%= new
+            Date(flightBook.ArrivalDateTime).toLocaleString("en-GB", { year:
+            "numeric", month: "2-digit", day: "2-digit", hour: "2-digit",
+            minute: "2-digit", second: "2-digit", hour12: false }).replace(',',
+            '') %>
+          </p>
+        </div>
+        <form action="/booking" method="post">
+          <input
+            type="hidden"
+            name="flightNumber"
+            value="<%= flightBook.FlightNumber %>"
+          />
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="passport">Passport Number</label>
+            <input type="text" id="passport" name="passport" required />
+          </div>
+
+          <div class="btnCont">
+            <button class="bookBtn" type="submit">Book Ticket</button>
+          </div>
+        </form>
+        <!-- <% } else { %>
+        <p>No flight data available.</p>
+        <% } %> -->
+      </div>
+    </div>
+  </body>
+</html>

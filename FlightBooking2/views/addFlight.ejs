@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/addflight-style.css" />
+    <title>Add Flight</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div>
+        <h1>Flight Booking</h1>
+      </div>
+      <ul class="linkCont">
+        <ol>
+          <a href="/admin">Tambah Penerbangan</a>
+        </ol>
+        <ol>
+          <a href="#">Tampilkan Data</a>
+        </ol>
+        <ol>
+          <a href="/checkRevenue">Cek Revenue</a>
+        </ol>
+        <!-- <ol>
+          <a href="#">Menu 4</a>
+        </ol> -->
+      </ul>
+    </div>
+    <div class="container">
+      <h1>Tambah Penerbangan</h1>
+      <form action="/addFlight" method="POST">
+        <div class="form-wrap">
+          <div class="left-form">
+            <div class="form-group">
+              <label for="flightNumber">Nomor Penerbangan</label>
+              <input
+                type="text"
+                id="flightNumber"
+                name="flightNumber"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="from">Lokasi Keberangkatan</label>
+              <select id="from" name="depLoc">
+                <option selected disabled>Select an option</option>
+                <% location.forEach(function(loc){ %>
+                <option value="<%= loc.location %>"><%= loc.location %></option>
+                <% }); %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="departureDate">Tanggal Keberangkatan</label>
+              <input
+                type="datetime-local"
+                id="departureDate"
+                name="depDate"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="right-form">
+            <div class="form-group">
+              <label for="totalSeats">Total Kursi</label>
+              <input
+                type="number"
+                id="totalSeats"
+                name="totalSeats"
+                value="180"
+                min="1"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="to">Lokasi Tujuan</label>
+              <select id="to" name="arrLoc">
+                <option selected disabled>Select an option</option>
+                <% location.forEach(function(loc){ %>
+                <option value="<%= loc.location %>"><%= loc.location %></option>
+                <% }); %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="arrivalDate">Tanggal Tiba</label>
+              <input
+                type="datetime-local"
+                id="arrivalDate"
+                name="arrDate"
+                required
+              />
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="arrivalTime">Arrival Time</label>
+              <input type="time" id="arrivalTime" name="arrivalTime" required />
+            </div> -->
+          </div>
+        </div>
+
+        <div class="form-group airlines">
+          <label for="airline">Airline</label>
+          <select id="airline" name="airline">
+            <option selected disabled>Select an option</option>
+            <% airline.forEach(function(item){ %>
+            <option value="<%= item.AirlineName %>">
+              <%= item.AirlineName %>
+            </option>
+            <% }); %>
+          </select>
+        </div>
+
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </body>
+</html>
