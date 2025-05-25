@@ -13,13 +13,13 @@
       </div>
       <ul class="linkCont">
         <ol>
-          <a href="user">Cari Penerbangan</a>
+          <a href="/user">Cari Penerbangan</a>
         </ol>
         <ol>
-          <a href="ticket">Cetak E-Tiket</a>
+          <a href="/user/geneTicketPage">Cetak E-Tiket</a>
         </ol>
         <ol>
-          <a href="history">Riwayat</a>
+          <a href="/user/historyPage">Riwayat</a>
         </ol>
       </ul>
     </div>
@@ -30,7 +30,7 @@
           <h1>Pencarian Penerbangan</h1>
         </div>
         <div class="wrapperSearchInput">
-          <form action="/search" method="post">
+          <form action="/user/searchFlight" method="post">
             <div class="form">
               <div class="fromTo">
                 <div class="locInput">
@@ -121,7 +121,7 @@
                 <p><%= flight.AvailableSeats %></p>
               </div>
               <div class="actionCont">
-                <form action="/book" method="post">
+                <form action="/user/bookPage" method="post">
                   <input
                     type="hidden"
                     name="flightBook"

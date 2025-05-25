@@ -13,20 +13,19 @@
       </div>
       <ul class="linkCont">
         <ol>
-          <a href="user">Cari Penerbangan</a>
+          <a href="/user">Cari Penerbangan</a>
         </ol>
         <ol>
-          <a href="ticket">Cetak E-Tiket</a>
+          <a href="/user/geneTicketPage">Cetak E-Tiket</a>
         </ol>
         <ol>
-          <a href="history">Riwayat</a>
+          <a href="/user/historyPage">Riwayat</a>
         </ol>
       </ul>
     </div>
     <div class="bookFlight">
       <h1>Pesan Tiket</h1>
       <div class="bookWrapper">
-        <!-- <% if (typeof flightBook !== 'undefined' && flightBook) { %> -->
         <div class="flight-details">
           <h2>Detail Tiket Penerbangan</h2>
           <p><strong>Flight Number</strong>: <%= flightBook.FlightNumber %></p>
@@ -50,7 +49,7 @@
             '') %>
           </p>
         </div>
-        <form action="/booking" method="post">
+        <form action="/user/bookFlight" method="post">
           <input
             type="hidden"
             name="flightNumber"
@@ -80,9 +79,6 @@
             <button class="bookBtn" type="submit">Book Ticket</button>
           </div>
         </form>
-        <!-- <% } else { %>
-        <p>No flight data available.</p>
-        <% } %> -->
       </div>
     </div>
   </body>
