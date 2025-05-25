@@ -6,7 +6,7 @@ const { isAuthenticated } = require('../middleware/authMiddleware');
 router.get('/admin', isAuthenticated('admin'), authModule.getAdminPage);
 router.post('/admin/addFlight', isAuthenticated('admin'), authModule.addFlight);
 router.get(
-  '/admin/chechRevenue',
+  '/admin/checkRevenue',
   isAuthenticated('admin'),
   authModule.getRevenuePage
 );
