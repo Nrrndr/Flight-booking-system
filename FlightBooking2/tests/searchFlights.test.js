@@ -1,4 +1,4 @@
-const { searchFlights } = require('../controllers/flightController');
+const { searchFlights } = require('modules/userModule');
 const db = require('../config/db');
 
 jest.mock('../config/db', () => ({
