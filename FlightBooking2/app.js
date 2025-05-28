@@ -7,7 +7,6 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(
@@ -18,10 +17,12 @@ app.use(
   })
 );
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'src', 'views'));
+app.use(express.static(path.join(__dirname, 'src', 'public')));
 
 // Routes
-app.use('/', require('./routes/authRoutes'));
-app.use('/', require('./routes/adminRoutes'));
-app.use('/', require('./routes/userRoutes'));
+app.use('/', require('./src/routes/authRoutes'));
+app.use('/', require('./src/routes/adminRoutes'));
+app.use('/', require('./src/routes/userRoutes'));
 
 module.exports = app;

@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.navbar {
+  width: auto;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(213, 213, 213, 1);
+  color: black;
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 0 40px;
+  z-index: 1000;
+}
+
+.linkCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.linkCont a {
+  font-size: large;
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+}
+
+.history {
+  margin: 0;
+  padding: 3em 10em;
+}
+
+.historyWrapper {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+}
+
+.history table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  display: block;
+  overflow-x: hidden;
+}
+
+.history thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  background-color: #14426b;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.history tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.history th,
+.history td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+  white-space: nowrap;
+  min-width: 120px;
+}

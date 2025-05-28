@@ -53,7 +53,7 @@ exports.searchFlights = async (req, res) => {
 
 exports.getBookPage = async (req, res) => {
   const flightID = req.body.flightBook;
-  let flightBook = await db.ueryAsync(
+  let flightBook = await db.queryAsync(
     'SELECT * FROM Flight WHERE FlightNumber = ?',
     [flightID]
   );

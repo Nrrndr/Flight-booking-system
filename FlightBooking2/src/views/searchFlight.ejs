@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/search-style.css" />
+    <title>Search Flight</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div>
+        <h1>Flight Booking</h1>
+      </div>
+      <ul class="linkCont">
+        <ol>
+          <a href="/user">Cari Penerbangan</a>
+        </ol>
+        <ol>
+          <a href="/user/geneTicketPage">Cetak E-Tiket</a>
+        </ol>
+        <ol>
+          <a href="/user/historyPage">Riwayat</a>
+        </ol>
+      </ul>
+    </div>
+    <div class="main">
+      <div class="searchSection">
+        <div class="searchBg"></div>
+        <div class="textSearchCont">
+          <h1>Pencarian Penerbangan</h1>
+        </div>
+        <div class="wrapperSearchInput">
+          <form action="/user/searchFlight" method="post">
+            <div class="form">
+              <div class="fromTo">
+                <div class="locInput">
+                  <label for="from">Lokasi Keberangkatan</label>
+                  <select id="departureLocation" name="depLoc">
+                    <option value="" disabled selected>
+                      Pilih Lokasi Keberangkatan
+                    </option>
+                    <% location.forEach(function(loc){ %>
+                    <option value="<%= loc.location %>">
+                      <%= loc.location %>
+                    </option>
+                    <% }); %>
+                  </select>
+                </div>
+                <div class="locInput">
+                  <label for="to">Lokasi Tujuan</label>
+                  <select id="arrivalLocation" name="arrLoc">
+                    <option value="" disabled selected>
+                      Pilih Lokasi Tujuan
+                    </option>
+                    <% location.forEach(function(loc){ %>
+                    <option value="<%= loc.location %>">
+                      <%= loc.location %>
+                    </option>
+                    <% }); %>
+                  </select>
+                </div>
+              </div>
+              <div class="fromTo">
+                <div class="dateInput" id="dep">
+                  <label for="">Tanggal Keberangkatan</label>
+                  <input type="date" name="depDate" id="depDatePick" />
+                </div>
+                <div class="dateInput" id="arr">
+                  <label for="">Tanggal Sampai</label>
+                  <input type="date" name="arrDate" id="arrDatePick" />
+                </div>
+              </div>
+            </div>
+            <div class="submit button">
+              <input type="Submit" value="Cari" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="searchResult">
+        <% if (typeof flight !== 'undefined' && flight.length > 0) { %>
+        <h1>Hasil Pencarian</h1>
+        <div class="resultCont">
+          <% flight.forEach(function(flight){ %>
+          <div class="resultCard">
+            <div class="cardHeader">
+              <div class="locCont">
+                <div><%=flight.Origin %></div>
+                <div class="flightIcon">- - - - - - - -</div>
+                <div><%= flight.Destination %></div>
+              </div>
+            </div>
+            <div class="cardBody">
+              <div class="idCont">
+                <strong>Flight Number:</strong> <%= flight.FlightNumber %>
+              </div>
+              <div class="dateCont">
+                <p><strong>Departure</strong></p>
+                <p>
+                  <%= new Date(flight.DepartureDateTime).toLocaleString("en-GB",
+                  { year: "numeric", month: "2-digit", day: "2-digit", hour:
+                  "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+                  }).replace(',', '') %>
+                </p>
+              </div>
+              <div class="dateCont">
+                <p><strong>Arrival:</strong></p>
+                <p>
+                  <%= new Date(flight.ArrivalDateTime).toLocaleString("en-GB", {
+                  year: "numeric", month: "2-digit", day: "2-digit", hour:
+                  "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+                  }).replace(',', '') %>
+                </p>
+              </div>
+              <div class="seatCont">
+                <p><strong>Total Seats: </strong></p>
+                <p><%= flight.TotalSeats %></p>
+              </div>
+              <div class="seatCont">
+                <p><strong>Available Seats: </strong></p>
+                <p><%= flight.AvailableSeats %></p>
+              </div>
+              <div class="actionCont">
+                <form action="/user/bookPage" method="post">
+                  <input
+                    type="hidden"
+                    name="flightBook"
+                    value="<%= flight.FlightNumber%>"
+                  />
+                  <input type="Submit" class="bookBtn" value="Pesan" />
+                </form>
+              </div>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+        <% } else { %>
+        <span></span>
+        <% } %>
+      </div>
+      <div class="availableDisc">
+        <h1>Diskon Tersedia</h1>
+        <div class="discCont">
+          <% for (let i = 0; i < 4; i++) { %>
+          <div class="discWrap">
+            <div></div>
+            <div><button>Lihat detail</button></div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

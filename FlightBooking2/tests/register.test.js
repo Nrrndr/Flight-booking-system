@@ -1,8 +1,8 @@
-const { register } = require('../modules/authModule');
-const db = require('../config/db');
+const { register } = require('../src/modules/authModule');
+const db = require('../src/config/db');
 const bcrypt = require('bcrypt');
 
-jest.mock('../config/db', () => {
+jest.mock('../src/config/db', () => {
   return {
     queryAsync: jest.fn(),
   };

@@ -1,7 +1,7 @@
-const {login} = require('../modules/authModule');
-const db = require('../config/db');
+const { login } = require('../src/modules/authModule');
+const db = require('../src/config/db');
 const bcrypt = require('bcrypt');
-jest.mock('../config/db', () => {
+jest.mock('../src/config/db', () => {
   return {
     queryAsync: jest.fn(),
   };
@@ -28,7 +28,7 @@ describe('login', () => {
         username: 'test_user',
         password: 'test',
       },
-      session : {save: jest.fn(),},
+      session: { save: jest.fn() },
     };
     res = {
       send: jest.fn(),
@@ -36,7 +36,7 @@ describe('login', () => {
       status: jest.fn(() => res),
     };
   });
-    
+
   it('harus mengembalikan error username tidak ditemukan', async () => {
     db.queryAsync.mockResolvedValue([]);
 
@@ -64,12 +64,12 @@ describe('login', () => {
     await login(req, res);
     expect(res.redirect).toHaveBeenCalledWith('/admin');
   });
-    it('harus menangani server error', async () => {
-      bcrypt.hash.mockResolvedValue('hashedPassword123');
-      db.queryAsync.mockRejectedValue(new Error('DB error'));
-  
-      await login(req, res);
-      expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.send).toHaveBeenCalledWith('Terjadi kesalahan saat login');
-    });
+  it('harus menangani server error', async () => {
+    bcrypt.hash.mockResolvedValue('hashedPassword123');
+    db.queryAsync.mockRejectedValue(new Error('DB error'));
+
+    await login(req, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith('Terjadi kesalahan saat login');
+  });
 });

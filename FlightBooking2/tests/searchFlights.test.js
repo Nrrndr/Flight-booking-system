@@ -1,7 +1,7 @@
-const { searchFlights } = require('../modules/userModule');
-const db = require('../config/db');
+const { searchFlights } = require('../src/modules/userModule');
+const db = require('../src/config/db');
 
-jest.mock('../config/db', () => ({
+jest.mock('../src/config/db', () => ({
   queryAsync: jest.fn(),
 }));
 

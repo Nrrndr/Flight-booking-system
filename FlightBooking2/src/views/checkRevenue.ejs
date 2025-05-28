@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/checkRevenue-style.css" />
+    <title>Add Flight</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <div>
+        <h1>Flight Booking</h1>
+      </div>
+      <ul class="linkCont">
+        <ol>
+          <a href="/admin">Tambah Penerbangan</a>
+        </ol>
+        <ol>
+          <a href="#">Tampilkan Data</a>
+        </ol>
+        <ol>
+          <a href="/admin/checkRevenue">Cek Revenue</a>
+        </ol>
+      </ul>
+    </div>
+    <div class="container">
+      <h1>Cek Revenue</h1>
+      <form action="/admin/checkRevenue" method="POST">
+        <div class="form-wrap">
+          <label>Pilih Kategori Laporan</label>
+          <div class="report-type">
+            <div class="radioWrap">
+              <input
+                type="radio"
+                id="flight"
+                name="reportType"
+                value="Flight"
+                checked
+              />
+              <label for="flight">Flight</label>
+            </div>
+            <div class="radioWrap">
+              <input
+                type="radio"
+                id="passenger"
+                name="reportType"
+                value="Passenger"
+              />
+              <label for="passenger">Passenger</label>
+            </div>
+            <div class="radioWrap">
+              <input
+                type="radio"
+                id="airport"
+                name="reportType"
+                value="Airport"
+              />
+              <label for="airport">Airport</label>
+            </div>
+            <div class="radioWrap">
+              <input
+                type="radio"
+                id="monthly"
+                name="reportType"
+                value="Monthly"
+              />
+              <label for="monthly">Monthly</label>
+            </div>
+          </div>
+
+          <label for="startDate">Tanggal Awal</label>
+          <input type="date" id="startDate" name="startDate" required />
+
+          <label for="endDate">Tanggal Akhir</label>
+          <input type="date" id="endDate" name="endDate" required />
+
+          <div id="idField">
+            <label id="idLabel" for="idInput">Masukkan Flight ID</label>
+            <input
+              type="text"
+              id="idInput"
+              name="flightId"
+              placeholder="Enter Flight ID"
+            />
+          </div>
+        </div>
+
+        <button type="submit">Cek</button>
+      </form>
+    </div>
+    <div class="tableCont">
+      <% if (typeof data !== 'undefined' && data.length > 0) { %>
+      <table border="1">
+        <thead>
+          <tr>
+            <% Object.keys(data[0]).forEach((key) => { %>
+            <th><%= key %></th>
+            <% }) %>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((item) => { %>
+          <tr>
+            <% Object.values(item).forEach((value) => { %>
+            <td><%= value %></td>
+            <% }) %>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% }; %>
+    </div>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
