@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.queryAsync(
-      'INSERT INTO users (username, email, PhoneNumber, PasswordHash, role) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO Users (username, email, PhoneNumber, PasswordHash, role) VALUES (?, ?, ?, ?, ?)',
       [username, email, phoneNumber, hashedPassword, 'user']
     );
     res.redirect('/');
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const results = await db.queryAsync(
-      'SELECT * FROM users WHERE Username = ?',
+      'SELECT * FROM Users WHERE Username = ?',
       [username]
     );
     if (results.length === 0)
