@@ -1,7 +1,7 @@
 # Use official Node.js runtime as base image
 FROM node:18-alpine
 # Set working directory inside container
-WORKDIR src
+WORKDIR /src
 # Copy package files first (for better caching)
 
 RUN apk add --no-cache curl
