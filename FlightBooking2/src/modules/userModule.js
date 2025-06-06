@@ -1,4 +1,5 @@
 const db = require('../config/db');
+/* eslint-disable no-console*/
 
 exports.getUserPage = async (req, res) => {
   try {
@@ -7,7 +8,7 @@ exports.getUserPage = async (req, res) => {
     res.render('searchFlight', {
       user: req.session.user,
       location: result,
-      flight: [],
+      flight: []
     });
   } catch (err) {
     console.log(err);
@@ -36,14 +37,14 @@ exports.searchFlights = async (req, res) => {
       depLoc,
       arrLoc,
       depDate,
-      arrDate,
+      arrDate
     ]);
     console.log(result);
 
     res.render('searchFlight', {
       user: req.session.user,
       flight: result[0],
-      location: location,
+      location: location
     });
   } catch (err) {
     console.log(err);
@@ -53,14 +54,11 @@ exports.searchFlights = async (req, res) => {
 
 exports.getBookPage = async (req, res) => {
   const flightID = req.body.flightBook;
-  let flightBook = await db.queryAsync(
-    'SELECT * FROM Flight WHERE FlightNumber = ?',
-    [flightID]
-  );
+  const flightBook = await db.queryAsync('SELECT * FROM Flight WHERE FlightNumber = ?', [flightID]);
 
   res.render('bookFlight', {
     user: req.session.user,
-    flightBook: flightBook[0],
+    flightBook: flightBook[0]
   });
   console.log(flightBook, flightID);
 };
@@ -86,13 +84,12 @@ exports.bookFlight = async (req, res) => {
   };
   const { firstName, lastName, email, passport, flightNumber } = req.body;
   const paymentStatus = 'pending';
-  const flightRes = await db.queryAsync(
-    'SELECT FlightID FROM Flight WHERE FlightNumber = ?',
-    [flightNumber]
-  );
-  let passengerID = await checkPassenger(firstName, lastName, email, passport);
+  const flightRes = await db.queryAsync('SELECT FlightID FROM Flight WHERE FlightNumber = ?', [
+    flightNumber
+  ]);
+  const passengerID = await checkPassenger(firstName, lastName, email, passport);
   const flightID = flightRes[0].FlightID;
-  let userID = parseInt(req.session.user.id);
+  const userID = parseInt(req.session.user.id);
 
   console.log(req.session.user.id, flightID, passengerID, paymentStatus);
   try {
@@ -100,7 +97,7 @@ exports.bookFlight = async (req, res) => {
       flightID,
       passengerID,
       userID,
-      paymentStatus,
+      paymentStatus
     ]);
 
     res.redirect('history');
@@ -114,9 +111,7 @@ exports.getTicketPage = async (req, res) => {
 };
 
 exports.generateTicket = async (req, res) => {
-  const histories = await db.queryAsync('CALL generateETicket(?)', [
-    req.session.user.id,
-  ]);
+  const histories = await db.queryAsync('CALL generateETicket(?)', [req.session.user.id]);
 
   const { bookID } = req.body;
   const history = histories[0];
@@ -128,12 +123,10 @@ exports.generateTicket = async (req, res) => {
 
 exports.getHistory = async (req, res) => {
   try {
-    const result = await db.queryAsync('CALL GetBookingHistory(?)', [
-      req.session.user.id,
-    ]);
+    const result = await db.queryAsync('CALL GetBookingHistory(?)', [req.session.user.id]);
     res.render('flightHistory', {
       user: req.session.user,
-      histories: result[0],
+      histories: result[0]
     });
   } catch (err) {
     console.log(err);

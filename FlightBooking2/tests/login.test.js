@@ -3,7 +3,7 @@ const db = require('../src/config/db');
 const bcrypt = require('bcrypt');
 jest.mock('../src/config/db', () => {
   return {
-    queryAsync: jest.fn(),
+    queryAsync: jest.fn()
   };
 });
 jest.mock('bcrypt');
@@ -11,13 +11,13 @@ const mockUser = {
   UserID: 'test_user',
   Username: 'test_user',
   Email: 'j@gmail.com',
-  Role: 'user',
+  Role: 'user'
 };
 const mockAdmin = {
   UserID: 'test_user',
   Username: 'test_user',
   Email: 'j@gmail.com',
-  Role: 'admin',
+  Role: 'admin'
 };
 describe('login', () => {
   let req, res;
@@ -26,14 +26,14 @@ describe('login', () => {
     req = {
       body: {
         username: 'test_user',
-        password: 'test',
+        password: 'test'
       },
-      session: { save: jest.fn() },
+      session: { save: jest.fn() }
     };
     res = {
       send: jest.fn(),
       redirect: jest.fn(),
-      status: jest.fn(() => res),
+      status: jest.fn(() => res)
     };
   });
 

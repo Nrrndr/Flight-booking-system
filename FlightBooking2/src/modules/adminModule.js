@@ -1,4 +1,5 @@
 const db = require('../config/db');
+/* eslint-disable no-console*/
 
 exports.getAdminPage = async (req, res) => {
   try {
@@ -8,7 +9,7 @@ exports.getAdminPage = async (req, res) => {
     res.render('addFlight', {
       user: req.session.user,
       location: locations,
-      airline: airlines,
+      airline: airlines
     });
   } catch (err) {
     console.log(err);
@@ -17,28 +18,19 @@ exports.getAdminPage = async (req, res) => {
 
 exports.addFlight = async (req, res) => {
   try {
-    const {
-      flightNumber,
-      depLoc,
-      arrLoc,
-      depDate,
-      arrDate,
-      totalSeats,
-      airline,
-    } = req.body;
+    const { flightNumber, depLoc, arrLoc, depDate, arrDate, totalSeats, airline } = req.body;
 
-    originAirportCode = await db.queryAsync(
+    const originAirportCode = await db.queryAsync(
       'SELECT AirportCode FROM Airport WHERE Airport.Location = ?',
       [depLoc]
     );
-    destinationAirportCode = await db.queryAsync(
+    const destinationAirportCode = await db.queryAsync(
       'SELECT AirportCode FROM Airport WHERE Airport.Location = ?',
       [arrLoc]
     );
-    airlineID = await db.queryAsync(
-      'SELECT AirlineID FROM Airline WHERE AirlineName = ?',
-      [airline]
-    );
+    const airlineID = await db.queryAsync('SELECT AirlineID FROM Airline WHERE AirlineName = ?', [
+      airline
+    ]);
 
     console.log(airlineID);
     console.log(destinationAirportCode);
@@ -53,7 +45,7 @@ exports.addFlight = async (req, res) => {
       arrDate,
       totalSeats,
       totalSeats,
-      airlineID[0].AirlineID,
+      airlineID[0].AirlineID
     ]);
 
     res.redirect('/admin');
@@ -64,14 +56,13 @@ exports.addFlight = async (req, res) => {
 
 exports.getRevenuePage = async (req, res) => {
   res.render('checkRevenue', {
-    user: req.session.user,
+    user: req.session.user
   });
 };
 
 exports.checkRevenue = async (req, res) => {
   try {
-    let { reportType, startDate, endDate, flightID, passengerID, airportCode } =
-      req.body;
+    const { reportType, startDate, endDate, flightID, passengerID, airportCode } = req.body;
 
     let id = '';
     if (flightID) id = flightID;
@@ -82,13 +73,13 @@ exports.checkRevenue = async (req, res) => {
       reportType,
       id,
       startDate,
-      endDate,
+      endDate
     ]);
 
     const data = result[0];
 
     res.render('checkRevenue', {
-      data: data,
+      data: data
     });
   } catch (err) {
     console.log(err);

@@ -1,8 +1,9 @@
-loginBtn = document.getElementById('login');
-regBtn = document.querySelector('#register');
-loginForm = document.querySelector('#logForm');
-regForm = document.querySelector('#regForm');
+const loginBtn = document.getElementById('login');
+const regBtn = document.querySelector('#register');
+const loginForm = document.querySelector('#logForm');
+const regForm = document.querySelector('#regForm');
 
+/* eslint-disable no-console*/
 let isOpen = false;
 
 if (loginBtn || regBtn || loginForm || regForm) {
@@ -18,7 +19,7 @@ if (loginBtn || regBtn || loginForm || regForm) {
     isOpen = true;
   });
 
-  window.addEventListener('click', (e) => {
+  window.addEventListener('click', e => {
     if (isOpen) {
       if (
         !loginForm.contains(e.target) &&
@@ -36,9 +37,7 @@ if (loginBtn || regBtn || loginForm || regForm) {
 
 document.addEventListener('DOMContentLoaded', () => {
   function updateInputField() {
-    const selectedType = document.querySelector(
-      'input[name="reportType"]:checked'
-    );
+    const selectedType = document.querySelector('input[name="reportType"]:checked');
 
     console.log('Selected Type:', selectedType.value);
 
@@ -68,6 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const radios = document.querySelectorAll('input[name="reportType"]');
-  radios.forEach((radio) => radio.addEventListener('change', updateInputField));
+  radios.forEach(radio => radio.addEventListener('change', updateInputField));
   updateInputField();
 });

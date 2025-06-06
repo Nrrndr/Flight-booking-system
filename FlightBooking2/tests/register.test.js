@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 jest.mock('../src/config/db', () => {
   return {
-    queryAsync: jest.fn(),
+    queryAsync: jest.fn()
   };
 });
 jest.mock('bcrypt');
@@ -19,13 +19,13 @@ describe('register', () => {
         email: 'test@example.com',
         phoneNumber: '08123456789',
         password: 'password123',
-        confirmPassword: 'password123',
-      },
+        confirmPassword: 'password123'
+      }
     };
     res = {
       send: jest.fn(),
       redirect: jest.fn(),
-      status: jest.fn(() => res),
+      status: jest.fn(() => res)
     };
   });
 
@@ -50,14 +50,8 @@ describe('register', () => {
     await register(req, res);
     expect(bcrypt.hash).toHaveBeenCalledWith('password123', 10);
     expect(db.queryAsync).toHaveBeenCalledWith(
-      'INSERT INTO users (username, email, PhoneNumber, PasswordHash, role) VALUES (?, ?, ?, ?, ?)',
-      [
-        'testuser',
-        'test@example.com',
-        '08123456789',
-        'hashedPassword123',
-        'user',
-      ]
+      'INSERT INTO Users (username, email, PhoneNumber, PasswordHash, role) VALUES (?, ?, ?, ?, ?)',
+      ['testuser', 'test@example.com', '08123456789', 'hashedPassword123', 'user']
     );
     expect(res.redirect).toHaveBeenCalledWith('/');
   });
@@ -67,9 +61,7 @@ describe('register', () => {
     db.queryAsync.mockRejectedValue({ code: 'ER_DUP_ENTRY' });
 
     await register(req, res);
-    expect(res.send).toHaveBeenCalledWith(
-      'Username atau email sudah terdaftar'
-    );
+    expect(res.send).toHaveBeenCalledWith('Username atau email sudah terdaftar');
   });
 
   it('harus menangani server error', async () => {

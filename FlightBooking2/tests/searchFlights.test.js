@@ -2,7 +2,7 @@ const { searchFlights } = require('../src/modules/userModule');
 const db = require('../src/config/db');
 
 jest.mock('../src/config/db', () => ({
-  queryAsync: jest.fn(),
+  queryAsync: jest.fn()
 }));
 
 describe('searchFlights', () => {
@@ -14,18 +14,18 @@ describe('searchFlights', () => {
         depLoc: 'Jakarta',
         arrLoc: 'Bali',
         depDate: '2025-06-01',
-        arrDate: '2025-06-10',
+        arrDate: '2025-06-10'
       },
       session: {
         user: {
           id: 1,
-          username: 'testuser',
-        },
-      },
+          username: 'testuser'
+        }
+      }
     };
 
     res = {
-      render: jest.fn(),
+      render: jest.fn()
     };
   });
 
@@ -36,8 +36,8 @@ describe('searchFlights', () => {
         FlightNumber: 'F001',
         From: 'Jakarta',
         To: 'Bali',
-        DepartureDate: '2025-06-01',
-      },
+        DepartureDate: '2025-06-01'
+      }
     ];
 
     db.queryAsync
@@ -49,7 +49,7 @@ describe('searchFlights', () => {
     expect(res.render).toHaveBeenCalledWith('searchFlight', {
       user: req.session.user,
       flight: mockFlights,
-      location: mockLocations,
+      location: mockLocations
     });
   });
 
@@ -63,7 +63,7 @@ describe('searchFlights', () => {
     expect(res.render).toHaveBeenCalledWith('searchFlight', {
       user: req.session.user,
       flight: [],
-      location: [{ location: 'Jakarta' }, { location: 'Bali' }],
+      location: [{ location: 'Jakarta' }, { location: 'Bali' }]
     });
   });
 
@@ -83,7 +83,7 @@ describe('searchFlights', () => {
       null,
       null,
       null,
-      null,
+      null
     ]);
   });
 

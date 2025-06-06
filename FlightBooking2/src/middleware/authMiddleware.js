@@ -1,3 +1,4 @@
+/* eslint-disable no-console*/
 function isAuthenticated(role) {
   return (req, res, next) => {
     console.log(req.session.user);

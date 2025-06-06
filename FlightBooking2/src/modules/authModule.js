@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
+/* eslint-disable no-console*/
 
 exports.register = async (req, res) => {
   const { username, email, phoneNumber, password, confirmPassword } = req.body;
-  if (!username || !email || !password)
-    return res.send('Semua field harus diisi');
+  if (!username || !email || !password) return res.send('Semua field harus diisi');
   if (password !== confirmPassword) return res.send('Password tidak sesuai');
 
   try {
@@ -25,12 +25,8 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const results = await db.queryAsync(
-      'SELECT * FROM Users WHERE Username = ?',
-      [username]
-    );
-    if (results.length === 0)
-      return res.status(401).send('Username tidak ditemukan');
+    const results = await db.queryAsync('SELECT * FROM Users WHERE Username = ?', [username]);
+    if (results.length === 0) return res.status(401).send('Username tidak ditemukan');
 
     const user = results[0];
     const isMatch = await bcrypt.compare(password, user.PasswordHash);
@@ -40,7 +36,7 @@ exports.login = async (req, res) => {
       id: user.UserID,
       username: user.Username,
       email: user.Email,
-      role: user.Role,
+      role: user.Role
     };
     req.session.save();
 
