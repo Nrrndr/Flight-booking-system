@@ -2,3 +2,6 @@ FlightBooking2/node_modules
 
 FlightBooking2/.env*
 FlightBooking2/coverage
+
+# Ignore .env inside FlightBooking2 folder
+FlightBooking2/.env
